@@ -1,0 +1,70 @@
+﻿@page "{id:int?}"
+@model RazorPagesMovie.Pages.Movies.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1>Edit</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Movie.Id" />
+            <input type="hidden" asp-for="Movie.ImageUri" />
+            <div class="form-group">
+                <label asp-for="Movie.Title" class="control-label"></label>
+                <input asp-for="Movie.Title" class="form-control" />
+                <span asp-validation-for="Movie.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.ReleaseDate" class="control-label"></label>
+                <input asp-for="Movie.ReleaseDate" class="form-control" />
+                <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.Genre" class="control-label"></label>
+                <input asp-for="Movie.Genre" class="form-control" />
+                <span asp-validation-for="Movie.Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.Price" class="control-label"></label>
+                <input asp-for="Movie.Price" class="form-control" />
+                <span asp-validation-for="Movie.Price" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Movie.Rank" class="control-label"></label>
+                <input asp-for="Movie.Rank" class="form-control" />
+                <span asp-validation-for="Movie.Rank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Upload New Image</label>
+                <input type="file" name="ImageFile" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+<div class="col-md-4 text-center">
+
+    @if (!string.IsNullOrEmpty(Model.Movie?.ImageUri))
+{
+	<img src=@Model.Movie.ImageUri class="my-thumbnail-class">
+}
+
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
